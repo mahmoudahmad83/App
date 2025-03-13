@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teper Alarabiyeh Aviation Support (TAS)</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-blue: #254a58; /* Dark Blue */
+            --secondary-blue: #6cc0bc; /* Light Blue */
+            --accent-gray: #a0a8b2; /* Blue-Gray */
+            --accent-green: #7b8760; /* Olive Green */
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .btn {
+            padding: 8px 20px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1200x600');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 20px;
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .service-desc {
+            color: var(--dark);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .auth-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-form input, .auth-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--success);
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(120%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            background: var(--primary-blue);
+            transform: translateX(0);
+        }
+
+        .notification-close {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+          /* Swiper Slider Styles */
+          .swiper {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 40px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .swiper-slide h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .swiper-slide p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+        }
+
+        .swiper-pagination-bullet {
+            background: white;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="logo1.png" height="100px" width="100px" alt="Teper Alarabiyeh Aviation Support">
+                </div>
+                <div class="nav-links">
+                    <a href="#" id="home-link">Home</a>
+                    <a href="#" id="services-link">Services</a>
+                    <a href="#" id="login-link">Login</a>
+                    <a href="#" id="register-link">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home-page">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Welcome to Teper Alarabiyeh Aviation Support</h1>
+            <p>Your trusted partner for airport services.</p>
+            <a href="#" class="btn" id="explore-services">Explore Services</a>
+        </div>
+
+        <!-- Swiper Slider -->
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide" style="background-image: url('cat.jpg');">
+                    <div>
+                        <h2>Airline Catering</h2>
+                        <p>High-quality inflight meals and beverages prepared by top chefs.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('Cargo.jpg');">
+                    <div>
+                        <h2>Cargo Handling</h2>
+                        <p>Efficient cargo processing and storage solutions for global airlines.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide" style="background-image: url('man.jpg');">
+                    <div>
+                        <h2>Aircraft Maintenance</h2>
+                        <p>Certified maintenance and repair services for all aircraft types.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swiper Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- Swiper Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Services Page -->
+    <section id="services-page" style="display: none;">
+        <div class="container">
+            <h2>Our Services</h2>
+            <input type="text" id="search-bar" placeholder="Search services..." oninput="filterServices()">
+            <div class="services-grid" id="services-grid">
+                <!-- Services will be populated dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Page -->
+    <section id="login-page" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Login</h2>
+                <p>Welcome back! Please login to continue.</p>
+            </div>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div class="auth-footer">
+                Don't have an account? <a href="#" id="go-to-register">Register here</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Page -->
+    <section id="register-page" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Register</h2>
+                <p>Create an account to access our services.</p>
+            </div>
+            <form id="register-form">
+                <input type="text" id="register-name" placeholder="Airline Name" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Password" required>
+                <button type="submit" class="btn">Register</button>
+            </form>
+            <div class="auth-footer">
+                Already have an account? <a href="#" id="go-to-login">Login here</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span>Offer selected! Admin has been notified.</span>
+        <span class="notification-close">&times;</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Teper Alarabiyeh Aviation Support. All rights reserved.</p>
+            <p>Contact: <a href="mailto:info@teberaviation.com">info@teberaviation.com</a></p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Sample Data
+        const services = [
+            {
+                title: "Airline Catering",
+                description: "High-quality inflight meals and beverages.",
+                image: "cat.jpg"
+            },
+            {
+                title: "Cargo Handling",
+                description: "Efficient cargo processing and storage.",
+                image: "Cargo.jpg"
+            },
+            {
+                title: "Aircraft Maintenance",
+                description: "Certified maintenance and repair services.",
+                image: "man.jpg"
+            }
+        ];
+
+        const offers = {
+            "airline-catering": [
+                {
+                    id: "CAT-001",
+                    title: "Premium Catering Service",
+                    description: "Gourmet meals prepared by top chefs.",
+                    price: "$25 per meal"
+                },
+                {
+                    id: "CAT-002",
+                    title: "Economy Catering Service",
+                    description: "Affordable meals for budget airlines.",
+                    price: "$15 per meal"
+                }
+            ],
+            "cargo-handling": [
+                {
+                    id: "CRG-001",
+                    title: "Express Cargo Handling",
+                    description: "Fast and reliable cargo services.",
+                    price: "$2.50 per kg"
+                }
+            ],
+            "aircraft-maintenance": [
+                {
+                    id: "MNT-001",
+                    title: "Routine Maintenance",
+                    description: "Regular checks and repairs.",
+                    price: "$5000 per service"
+                }
+            ]
+        };
+
+        // DOM Elements
+        const homePage = document.getElementById('home-page');
+        const servicesPage = document.getElementById('services-page');
+        const loginPage = document.getElementById('login-page');
+        const registerPage = document.getElementById('register-page');
+        const servicesGrid = document.getElementById('services-grid');
+        const homeLink = document.getElementById('home-link');
+        const servicesLink = document.getElementById('services-link');
+        const loginLink = document.getElementById('login-link');
+        const registerLink = document.getElementById('register-link');
+        const exploreServices = document.getElementById('explore-services');
+        const goToLogin = document.getElementById('go-to-login');
+        const goToRegister = document.getElementById('go-to-register');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const notification = document.getElementById('notification');
+        const notificationClose = document.querySelector('.notification-close');
+
+
+        //swiper
+        const swiper = new Swiper('.swiper', {
+            loop: true, // Enable infinite loop
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 5000, // Auto-slide every 5 seconds
+            },
+        });
+
+        // Event Listeners
+        homeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home-page');
+        });
+
+        servicesLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('services-page');
+        });
+
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login-page');
+        });
+
+        registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('register-page');
+        });
+
+        exploreServices.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('services-page');
+        });
+
+        goToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login-page');
+        });
+
+        goToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('register-page');
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleLogin();
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleRegister();
+        });
+
+        notificationClose.addEventListener('click', () => {
+            notification.classList.remove('show');
+        });
+
+        // Functions
+        function showPage(pageId) {
+            const pages = [homePage, servicesPage, loginPage, registerPage];
+            pages.forEach(page => {
+                if (page.id === pageId) {
+                    page.style.display = 'block';
+                } else {
+                    page.style.display = 'none';
+                }
+            });
+
+            if (pageId === 'services-page') {
+                renderServices();
+            }
+        }
+
+        function renderServices() {
+            servicesGrid.innerHTML = services.map(service => {
+                const serviceType = service.title.toLowerCase().replace(/\s+/g, '-');
+                return `
+                    <div class="service-card" data-service="${serviceType}">
+                        <div class="service-img" style="background-image: url('${service.image}')"></div>
+                        <div class="service-content">
+                            <h3 class="service-title">${service.title}</h3>
+                            <p class="service-desc">${service.description}</p>
+                            <button class="btn" onclick="viewOffers('${serviceType}')">View Offers</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function viewOffers(serviceType) {
+            const serviceOffers = offers[serviceType];
+            if (!serviceOffers) {
+                servicesGrid.innerHTML = `<p>No offers available for this service.</p>`;
+                return;
+            }
+
+            servicesGrid.innerHTML = serviceOffers.map(offer => `
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3 class="service-title">${offer.title}</h3>
+                        <p class="service-desc">${offer.description}</p>
+                        <p class="service-desc"><strong>Price:</strong> ${offer.price}</p>
+                        <button class="btn" onclick="selectOffer('${offer.id}', '${serviceType}')">Select Offer</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectOffer(offerId, serviceType) {
+            const selectedOffer = offers[serviceType].find(offer => offer.id === offerId);
+            const airlineEmail = localStorage.getItem('loggedInUser');
+
+            if (selectedOffer && airlineEmail) {
+                // Save selected offer to localStorage (simulate sending to admin)
+                const adminData = JSON.parse(localStorage.getItem('adminData')) || [];
+                adminData.push({
+                    offerId: selectedOffer.id,
+                    airlineEmail: airlineEmail,
+                    serviceType: serviceType,
+                    timestamp: new Date().toLocaleString()
+                });
+                localStorage.setItem('adminData', JSON.stringify(adminData));
+
+                // Show notification
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 3000);
+            } else {
+                alert('Please login to select an offer.');
+            }
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const user = JSON.parse(localStorage.getItem(email));
+
+            if (user && user.password === password) {
+                localStorage.setItem('loggedInUser', email);
+                alert('Login successful!');
+                showPage('services-page');
+            } else {
+                alert('Invalid email or password.');
+            }
+        }
+
+        function handleRegister() {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+
+            const user = {
+                name,
+                email,
+                password
+            };
+
+            localStorage.setItem(email, JSON.stringify(user));
+            alert('Registration successful!');
+            showPage('login-page');
+        }
+
+        // Initial Setup
+        showPage('home-page');
+    </script>
+</body>
+</html>
